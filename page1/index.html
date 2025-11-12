@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>控制面板</title>
+    <link rel="stylesheet" href="./css/page1.css">
+</head>
+<body>
+    <!-- 头部区域 -->
+    <header class="header">
+        <!-- 返回按钮 -->
+        <div class="back-button" onclick="goBack()">
+            <img src="../../../img/返回.jpg" alt="返回" class="back-icon">
+        </div>
+        
+        <!-- 标题 -->
+        <h1 class="header-title">机械臂控制面板</h1>
+        
+        <!-- 刷新按钮 -->
+        <div class="refresh-button" onclick="startStreaming()">
+            <img src="../../../img/刷新.jpg" alt="刷新" class="refresh-icon">
+        </div>
+    </header>
+    
+    <!-- 身体区域 -->
+    <div class="body-container">
+        <!-- 左半部分 - 按钮区域 -->
+        <div class="left-panel">
+            <div class="button-grid" id="buttonContainer">
+                <!-- 按钮将通过JavaScript动态生成 -->
+            </div>
+        </div>
+        
+        <!-- 右半部分 - 视频流区域 -->
+        <div class="right-panel">
+            <div class="video-container">
+                <div class="video-player" id="videoPlayer">
+                    <img id="cameraStream" src="" alt="摄像头画面" />
+                    <div id="status" class="status">未连接</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 引入 JS，注意路径 -->
+    <script src="../Connect_Net/js/Connect_Net.js"></script>
+    <script src="./js/page1.js"></script>
+</body>
+</html>
