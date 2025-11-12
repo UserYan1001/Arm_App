@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>相册 - Arm_v1</title>
+    <link rel="stylesheet" href="css/Photo_Camera.css">
+</head>
+<body>
+    <div class="container">
+        <!-- 头部区域 -->
+        <header class="header">
+            <div class="back-button" onclick="goBack()">
+                <img src="../../img/返回.jpg" alt="返回" class="back-icon">
+            </div>
+            <h1 class="header-title">相册</h1>
+        </header>
+        <!-- 相册内容区域 -->
+        <div class="gallery-container">
+            <div class="gallery-content" id="galleryContent">
+                <!-- 图片将通过JavaScript动态加载 -->
+                <div class="no-photos" id="noPhotos">
+                    <p>暂无照片</p>
+                </div>
+            </div>
+        </div>
+        <!-- 图片查看器弹窗 -->
+        <div class="image-viewer" id="imageViewer">
+            <div class="image-viewer-content">
+                <img id="viewedImage" src="" alt="查看图片">
+                <div class="close-button" onclick="closeImageViewer()">×</div>
+            </div>
+        </div>
+    </div>
+    <script src="js/Photo_Camera.js"></script>
+</body>
+</html>

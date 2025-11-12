@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>控制面板</title>
+    <link rel="stylesheet" href="./css/page1.css">
+</head>
+<body>
+    <!-- 头部区域 -->
+    <header class="header">
+        <!-- 返回按钮 -->
+        <div class="back-button" onclick="goBack()">
+            <img src="../../../img/返回.jpg" alt="返回" class="back-icon">
+        </div>
+        
+        <!-- 标题 -->
+        <h1 class="header-title">机体遥控</h1>
+        
+        <!-- 功能按钮组 -->
+        <div class="header-buttons">
+            <!-- 相机按钮 -->
+            <div class="camera-button" onclick="captureImage()">
+                <img src="../../../img/相机.jpg" alt="相机" class="camera-icon">
+            </div>
+            <!-- 刷新按钮 -->
+            <div class="refresh-button" onclick="startStreaming()">
+                <img src="../../../img/刷新.jpg" alt="刷新" class="refresh-icon">
+            </div>
+        </div>
+    </header>
+    
+    <!-- 身体区域 -->
+    <div class="body-container">
+        <!-- 左半部分 - 控制面板区域 -->
+        <div class="left-panel">
+            <!-- 滑条控制器 - 按指定位置百分比绝对定位 -->
+            <div class="slider-group slider-group-0">
+                <div class="slider-wrapper">
+                    <img src="../../../img/左箭头.jpg" alt="减小" class="slider-btn minus-btn" id="minus0">
+                    <input type="range" class="slider" id="slider0" min="500" max="2500" value="1500" oninput="updateJointValue(0, this.value)">
+                    <img src="../../../img/右箭头.jpg" alt="增大" class="slider-btn plus-btn" id="plus0">
+                </div>
+            </div>
+            
+            <div class="slider-group slider-group-1">
+                <div class="slider-wrapper">
+                    <img src="../../../img/左箭头.jpg" alt="减小" class="slider-btn minus-btn" id="minus1">
+                    <input type="range" class="slider" id="slider1" min="500" max="2500" value="1500" oninput="updateJointValue(1, this.value)">
+                    <img src="../../../img/右箭头.jpg" alt="增大" class="slider-btn plus-btn" id="plus1">
+                </div>
+            </div>
+            
+            <div class="slider-group slider-group-2">
+                <div class="slider-wrapper">
+                    <img src="../../../img/左箭头.jpg" alt="减小" class="slider-btn minus-btn" id="minus2">
+                    <input type="range" class="slider" id="slider2" min="500" max="2500" value="1500" oninput="updateJointValue(2, this.value)">
+                    <img src="../../../img/右箭头.jpg" alt="增大" class="slider-btn plus-btn" id="plus2">
+                </div>
+            </div>
+            
+            <div class="slider-group slider-group-3">
+                <div class="slider-wrapper">
+                    <img src="../../../img/左箭头.jpg" alt="减小" class="slider-btn minus-btn" id="minus3">
+                    <input type="range" class="slider" id="slider3" min="500" max="2500" value="1500" oninput="updateJointValue(3, this.value)">
+                    <img src="../../../img/右箭头.jpg" alt="增大" class="slider-btn plus-btn" id="plus3">
+                </div>
+            </div>
+            
+            <div class="slider-group slider-group-4">
+                <div class="slider-wrapper">
+                    <img src="../../../img/左箭头.jpg" alt="减小" class="slider-btn minus-btn" id="minus4">
+                    <input type="range" class="slider" id="slider4" min="500" max="2500" value="1500" oninput="updateJointValue(4, this.value)">
+                    <img src="../../../img/右箭头.jpg" alt="增大" class="slider-btn plus-btn" id="plus4">
+                </div>
+            </div>
+            
+            <div class="slider-group slider-group-5">
+                <div class="slider-wrapper">
+                    <img src="../../../img/左箭头.jpg" alt="减小" class="slider-btn minus-btn" id="minus5">
+                    <input type="range" class="slider" id="slider5" min="500" max="2500" value="1500" oninput="updateJointValue(5, this.value)">
+                    <img src="../../../img/右箭头.jpg" alt="增大" class="slider-btn plus-btn" id="plus5">
+                </div>
+            </div>
+            
+            <!-- 一键复位按钮 -->
+            <button class="reset-btn" onclick="resetAllJoints()">一键复位</button>
+        </div>
+        
+        <!-- 右半部分 - 视频流区域 -->
+        <div class="right-panel">
+            <div class="video-container">
+                <div class="video-player" id="videoPlayer">
+                    <img id="cameraStream" src="" alt="摄像头画面" />
+                    <div id="status" class="status">未连接</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 拍照成功弹窗 -->
+    <div class="success-modal" id="successModal">
+        <div class="modal-content">
+            <div class="modal-icon">✓</div>
+            <div class="modal-text">拍照成功！</div>
+            <div class="modal-buttons">
+                <button class="modal-btn primary" onclick="closeSuccessModal()">确定</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 引入 JS，注意路径 -->
+    <script src="../Connect_Net/js/Connect_Net.js"></script>
+    <script src="./js/page1.js"></script>
+</body>
+</html>

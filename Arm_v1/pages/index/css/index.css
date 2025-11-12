@@ -1,0 +1,238 @@
+/* index页面样式 - 横屏布局 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    line-height: 1.6;
+    overflow: hidden;
+    height: 100vh;
+}
+
+.container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* 顶部公司名称区域 */
+.company-header {
+    height: 20vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    background: rgba(231, 8, 8, 0.1);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+@keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.company-name {
+    background: linear-gradient(90deg, #7beee4, #df8484, hsl(128, 72%, 72%), #8b84ee);
+    background-size: 300% 100%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientMove 5s linear infinite;
+}
+
+/* 横向图片列表导航区域 */
+.image-nav-container {
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.image-list-wrapper {
+    width: 90vw;
+    height: 60vh;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 20px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    display: flex; /* 关键：让容器成为flex容器 */
+    align-items: center; /* 垂直居中 */
+}
+
+/* 图片列表容器 */
+.image-list {
+    display: flex;
+    height: 90%;
+    gap: 30px;
+    align-items: center;
+    padding: 20px;
+    margin: 0 auto; /* 水平居中 */
+}
+
+/* 当内容超出容器宽度时启用滚动模式 */
+.image-list-wrapper.scrollable .image-list {
+    min-width: max-content;
+    margin: 0; /* 取消居中，允许滚动 */
+}
+
+.image-nav-item {
+    flex: 0 0 auto;
+    width: 200px;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.image-nav-item:hover {
+    
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.15);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.nav-image {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+/* 横屏优化 */
+@media (orientation: landscape) {
+    .company-header {
+        height: 15vh;
+    }
+    
+    .image-nav-container {
+        height: 85vh;
+    }
+    
+    .image-list-wrapper {
+        height: 70vh;
+    }
+}
+
+/* 动画效果 */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.image-nav-item {
+    animation: fadeIn 0.6s ease-out;
+}
+
+.company-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+}
+
+
+/* 弹窗遮罩层 */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(4px); /* ✅ 毛玻璃效果 */
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 弹窗主体 */
+.modal-content {
+    background: linear-gradient(145deg, #7f9092, #28aed6); /* ✅ 柔和浅色渐变 */
+    padding: 24px 28px;
+    border-radius: 12px;
+    max-width: 420px;
+    width: 88%;
+    text-align: center;
+    box-shadow: 0 12px 32px rgba(0,0,0,0.28); /* ✅ 阴影浮起感 */
+    animation: modalFadeIn 0.25s ease-out; /* ✅ 弹入过渡动画 */
+}
+
+/* 弹窗标题 */
+.modal-content h1 {
+    margin-bottom: 12px;
+    font-size: 35px;
+    color: #1ffa0b;
+    font-weight: 600;
+}
+
+.modal-content h2 {
+    margin-bottom: 12px;
+    font-size: 25px;
+    color: #c2d60e;
+    font-weight: 600;
+}
+
+/* 弹窗文字 */
+.modal-content p {
+    margin-top: 6px;
+    font-size: 15px;
+    color: #666;
+    line-height: 1.6;
+}
+
+/* ✅ 弹出动画 */
+@keyframes modalFadeIn {
+    from {
+        transform: scale(0.92);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* 头部右侧按钮组 */
+.header-right-buttons {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+/* 图片样式 */
+.declaration-img, .network-img, .gallery-img {
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+    /* 可选：添加边框确保图片加载失败时可见 */
+    border: 1px solid #ccc;
+}

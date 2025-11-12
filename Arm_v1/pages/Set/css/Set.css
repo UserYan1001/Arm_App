@@ -1,0 +1,303 @@
+/* 颜色阈值设置页面样式 */
+
+/* 全局样式重置 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #1a1a2e, #16213e);
+    color: #ffffff;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* 头部样式 */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.back-button {
+    display: flex;
+    align-items: center;
+    padding: 8px 12px;
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.back-button:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateX(-3px);
+}
+
+.back-icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 6px;
+}
+
+.back-text {
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.header-title {
+    display: flex;
+    align-items: center;
+}
+
+.header-title {
+    font-size: 22px;
+    font-weight: 600;
+    color: #ffffff;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* 主体容器样式 - 优化flex布局稳定性 */
+.main-container {
+    display: flex;
+    height: calc(100vh - 60px);
+    padding: 20px;
+    gap: 20px;
+    overflow: hidden; /* 防止内容溢出页面 */
+}
+
+/* 左侧摄像头区域 - 优化视频容器比例 */
+.camera-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px; /* 统一间距，替代margin-top */
+}
+
+.camera-container, .video-container {
+    position: relative;
+    width: 100%;
+    max-width: 640px;
+    height: 480px; /* 保持16:9比例（640*480） */
+    background: #000;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.video-player {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.camera-feed, .processed-canvas, #cameraStream {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.processed-canvas {
+    opacity: 0.7;
+    mix-blend-mode: multiply;
+}
+
+.status {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 12px;
+    z-index: 10; /* 确保在视频上层显示 */
+}
+
+.camera-info p {
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.8);
+    text-align: center;
+}
+
+/* 右侧控制区域 - 修复布局塌陷，优化间距 */
+.control-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background: rgba(30, 30, 50, 0.8);
+    border-radius: 15px;
+    padding: 20px 25px; /* 调整上下内边距，更均衡 */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    min-height: 280px; /* 提高最小高度，避免内容溢出 */
+    gap: 20px; /* 统一子元素间距，替代margin-bottom */
+}
+
+/* 颜色选择按钮 - 优化点击区域和间距 */
+.color-selector {
+    display: flex;
+    gap: 10px; /* 替代margin，间距更均匀 */
+}
+
+.color-btn {
+    flex: 1;
+    padding: 12px 5px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    color: #ffffff;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center; /* 确保按钮文字居中 */
+}
+
+.color-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+.color-btn.active {
+    background: rgba(76, 175, 80, 0.6);
+    border-color: #4CAF50;
+    box-shadow: 0 0 10px rgba(76, 175, 80, 0.3);
+}
+
+/* 滑条容器 - 修复flex布局，避免内容挤压 */
+.sliders-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* 替代margin-bottom，间距更统一 */
+}
+
+.slider-row {
+    display: flex;
+    gap: 15px; /* 替代margin，滑条组间距更均匀 */
+}
+
+.slider-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px; /* 标签与滑条间距优化 */
+}
+
+.slider-group label {
+    font-size: 16px;
+    color: #ffffff;
+    text-align: center;
+}
+
+.slider {
+    width: 100%;
+    height: 8px;
+    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.1);
+    outline: none;
+    -webkit-appearance: none;
+    appearance: none;
+    cursor: pointer;
+}
+
+/* 滑条样式统一（webkit/moz） */
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #4CAF50;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(76, 175, 80, 0.5);
+    transition: all 0.3s ease;
+}
+
+.slider::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+    box-shadow: 0 0 15px rgba(76, 175, 80, 0.7);
+}
+
+.slider::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border: none; /* 清除默认边框 */
+    border-radius: 50%;
+    background: #4CAF50;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(76, 175, 80, 0.5);
+    transition: all 0.3s ease;
+}
+
+.slider::-moz-range-thumb:hover {
+    transform: scale(1.2);
+    box-shadow: 0 0 15px rgba(76, 175, 80, 0.7);
+}
+
+/* 保存按钮 - 核心修改：垂直居中+靠右对齐 */
+.save-btn {
+    /* 1. 垂直居中：通过margin-top: auto + margin-bottom: auto 实现（flex布局特性） */
+    margin-top: auto;
+    margin-bottom: auto;
+    /* 2. 靠右对齐：保持align-self: flex-end，同时添加right: 25px与控制区padding呼应，避免贴边 */
+    align-self: center;
+    margin-right: 0; /* 取消右 margin，贴紧右侧 */
+    padding: 10px 20px; /* 扩大点击区域 */
+    background: #a63cec;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 15px; /* 优化字体大小 */
+    transition: all 0.3s ease; /* 统一过渡效果 */
+    margin-top: -5px;
+}
+
+
+
+
+/* 响应式设计（平板端） */
+@media (max-width: 1024px) {
+    .main-container {
+        flex-direction: row;
+        height: calc(100vh - 60px);
+        padding: 10px;
+        gap: 10px;
+    }
+    
+    .camera-section {
+        flex: 1.5;
+    }
+    
+    .control-section {
+        flex: 1;
+        padding: 15px 20px;
+        gap: 15px;
+    }
+    
+    .camera-container, .video-container {
+        height: 360px; /* 按比例缩小视频高度 */
+    }
+    
+    .slider-row {
+        gap: 10px;
+    }
+}
+
+
+

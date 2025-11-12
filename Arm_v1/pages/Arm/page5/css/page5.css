@@ -1,0 +1,486 @@
+/* 重置样式 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 页面基础样式 */
+body {
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    color: #333;
+    line-height: 1.6;
+    overflow: hidden;
+}
+
+/* 头部区域样式 */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 70px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* 返回按钮样式 */
+.back-button {
+    position: absolute;
+    left: 20px;
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.back-button:hover {
+    transform: scale(1.1);
+    background: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.back-icon {
+    width: 25px;
+    height: 25px;
+    object-fit: contain;
+}
+
+/* 头部标题样式 */
+.header-title {
+    font-size: 1.8rem;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    margin: 0;
+    flex: 1;
+    text-align: center;
+}
+
+/* 刷新按钮样式 */
+.refresh-button {
+    position: absolute;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.refresh-button:hover {
+    transform: scale(1.1);
+    background: rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+.refresh-icon {
+    width: 25px;
+    height: 25px;
+    object-fit: contain;
+}
+
+/* 身体区域样式 */
+.body-container {
+    padding-top: 70px;
+    display: flex;
+    flex-direction: row;
+    height: calc(100vh - 70px);
+    overflow: hidden;
+}
+
+/* 左半部分控制面板样式 */
+.left-panel {
+    width: 45%;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    min-height: 200px;
+    overflow: hidden;
+}
+
+/* 右半部分视频区域样式 */
+.right-panel {
+    width: 55%;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+}
+
+/* 控制区域标题样式 */
+.section-title {
+    color: white;
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+    text-align: center;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    margin-top: 0;
+}
+
+/* 控制区段样式 */
+.control-section {
+    margin-bottom: 20px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    
+}
+
+/* 勾选框组样式 - 横向布局 */
+.checkbox-group {
+    display: flex;
+    justify-content: space-around;
+    gap: 10px;
+    margin-top: 15px;
+    flex-wrap: wrap;
+}
+
+/* 勾选框项样式 */
+.checkbox-item {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 12px 16px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+    min-width: 80px;
+    justify-content: center;
+}
+
+.checkbox-item:hover:not(:has(input:disabled)) {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* 自定义复选框 */
+.checkbox-item input[type="checkbox"] {
+    position: absolute;
+    opacity: 0;
+}
+
+.checkbox-custom {
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    border-radius: 50%;
+    margin-right: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.checkbox-item input[type="checkbox"]:checked + .checkbox-custom {
+    background-color: #4CAF50;
+    border-color: #4CAF50;
+}
+
+.checkbox-item input[type="checkbox"]:checked + .checkbox-custom::after {
+    content: '✓';
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.checkbox-item input[type="checkbox"]:disabled + .checkbox-custom {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.checkbox-text {
+    color: white;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.checkbox-item input[type="checkbox"]:disabled ~ .checkbox-text {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* 开关样式 - 美化 */
+.switch {
+    position: relative;
+    display: block;
+    width: 60px;
+    height: 30px;
+    margin: 10px auto 0;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.3);
+    transition: .4s;
+    border-radius: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 24px;
+    width: 24px;
+    left: 2px;
+    bottom: 2px;
+    background: white;
+    transition: .4s;
+    border-radius: 50%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+input:checked + .slider {
+    background: linear-gradient(45deg, #4CAF50, #8BC34A);
+    border-color: #4CAF50;
+}
+
+input:checked + .slider:before {
+    transform: translateX(30px);
+}
+
+/* 颜色主题 */
+.checkbox-item:nth-child(1) .checkbox-custom {
+    border-color: #FF5252;
+}
+
+.checkbox-item:nth-child(1) .checkbox-text {
+    color: #FFEBEE;
+}
+
+.checkbox-item:nth-child(1) input[type="checkbox"]:checked + .checkbox-custom {
+    background-color: #FF5252;
+    border-color: #FF5252;
+}
+
+.checkbox-item:nth-child(2) .checkbox-custom {
+    border-color: #42A5F5;
+}
+
+.checkbox-item:nth-child(2) .checkbox-text {
+    color: #E3F2FD;
+}
+
+.checkbox-item:nth-child(2) input[type="checkbox"]:checked + .checkbox-custom {
+    background-color: #42A5F5;
+    border-color: #42A5F5;
+}
+
+.checkbox-item:nth-child(3) .checkbox-custom {
+    border-color: #66BB6A;
+}
+
+.checkbox-item:nth-child(3) .checkbox-text {
+    color: #E8F5E9;
+}
+
+.checkbox-item:nth-child(3) input[type="checkbox"]:checked + .checkbox-custom {
+    background-color: #66BB6A;
+    border-color: #66BB6A;
+}
+
+/* 按钮组样式 */
+.control-section:last-child {
+    display: flex;
+    gap: 12px;
+    width: 100%;
+}
+
+/* 发送按钮样式 */
+.send-btn {
+    width: 50%;
+    padding: 15px;
+    font-size: 16px;
+    font-weight: 600;
+    color: white;
+    background: linear-gradient(45deg, #4285F4, #34A853);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(66, 133, 244, 0.3);
+}
+
+.send-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(66, 133, 244, 0.4);
+    background: linear-gradient(45deg, #3367D6, #2A8846);
+}
+
+.send-btn:active {
+    transform: translateY(0);
+}
+
+.send-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* 停止分拣按钮样式 */
+.stop-btn {
+    width: 50%;
+    padding: 15px;
+    font-size: 16px;
+    font-weight: 600;
+    color: white;
+    background: linear-gradient(45deg, #EA4335, #FBBC05);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(234, 67, 53, 0.3);
+}
+
+.stop-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(234, 67, 53, 0.4);
+    background: linear-gradient(45deg, #C53929, #F29900);
+}
+
+.stop-btn:active {
+    transform: translateY(0);
+}
+
+.stop-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* 视频容器样式 */
+.video-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+    height: 100%;
+}
+
+/* 视频播放器样式 */
+.video-player {
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    overflow: hidden;
+    position: relative;
+}
+
+.video-player img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.status {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+}
+
+/* 视频元素样式 */
+#cameraStream {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background: #000;
+}
+
+/* 横屏优化 */
+@media (orientation: landscape) {
+    .header {
+        height: 60px;
+    }
+    
+    .body-container {
+        height: calc(100vh - 60px);
+        margin-top: 60px;
+        padding: 15px;
+    }
+    
+    .header-title {
+        font-size: 20px;
+    }
+    
+    .back-button {
+        width: 45px;
+        height: 45px;
+        left: 15px;
+        padding: 8px 16px;
+    }
+    
+    .back-icon {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+/* 触摸优化 */
+.back-button {
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* 图片错误处理 */
+.back-icon:before {
+    content: "←";
+    font-size: 20px;
+    color: white;
+    display: none;
+}
+
+.back-icon[src=""]:before,
+.back-icon:not([src]):before {
+    display: block;
+}
