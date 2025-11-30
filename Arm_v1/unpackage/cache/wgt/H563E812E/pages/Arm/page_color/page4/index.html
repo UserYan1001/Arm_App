@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>控制面板</title>
+    <link rel="stylesheet" href="./css/page4.css">
+</head>
+<body>
+    <!-- 头部区域 -->
+    <header class="header">
+        <!-- 返回按钮 -->
+        <div class="back-button" onclick="goBack()">
+            <img src="../../../../img/back.jpg" alt="返回" class="back-icon">
+        </div>
+        
+        <!-- 标题 -->
+        <h1 class="header-title">色块码垛</h1>
+        
+        <!-- 功能按钮组 -->
+        <div class="header-buttons">
+            <!-- 相机按钮 -->
+            <div class="camera-button" onclick="captureImage()">
+                <img src="../../../../img/相机.jpg" alt="相机" class="camera-icon">
+            </div>
+            <!-- 刷新按钮 -->
+            <div class="refresh-button" onclick="startStreaming()">
+                <img src="../../../../img/刷新.jpg" alt="刷新" class="refresh-icon">
+            </div>
+        </div>
+    </header>
+    
+    <!-- 身体区域 -->
+    <div class="body-container">
+        <!-- 左半部分 - 控制区域 -->
+        <div class="left-panel">
+            <!-- 提示文字 -->
+            <div class="control-section">
+                <p class="instruction-text">按下开始码垛按钮后，开始进行色块码垛</p>
+            </div>
+            
+            <!-- 码垛控制按钮 -->
+            <div class="control-section">
+                <button id="startStackButton" class="send-btn" onclick="sendStartStackCommand()">
+                    开始码垛
+                </button>
+                <button id="stopStackButton" class="stop-btn" onclick="sendStopStackCommand()">
+                    停止码垛
+                </button>
+            </div>
+        </div>
+        
+        <!-- 右半部分 - 视频流区域 -->
+        <div class="right-panel">
+            <div class="video-container">
+                <div class="video-player" id="videoPlayer">
+                    <img id="cameraStream" src="" alt="摄像头画面" />
+                    <div id="status" class="status">未连接</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <!-- 拍照成功弹窗 -->
+    <div class="success-modal" id="successModal">
+        <div class="modal-content">
+            <div class="modal-icon">✓</div>
+            <div class="modal-text">拍照成功！</div>
+            <div class="modal-buttons">
+                <button class="modal-btn primary" onclick="closeSuccessModal()">确定</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 引入 JS，注意路径 -->
+    <script src="../../../Connect_Net/js/Connect_Net.js"></script>
+    <script src="./js/page4.js"></script>
+</body>
+</html>

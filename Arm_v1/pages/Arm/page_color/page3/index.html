@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>控制面板</title>
+    <link rel="stylesheet" href="./css/page3.css">
+</head>
+<body>
+    <!-- 头部区域 -->
+    <header class="header">
+        <!-- 返回按钮 -->
+        <div class="back-button" onclick="goBack()">
+            <img src="../../../../img/back.jpg" alt="返回" class="back-icon">
+        </div>
+        
+        <!-- 标题 -->
+        <h1 class="header-title">色块分练</h1>
+        
+        <!-- 功能按钮组 -->
+        <div class="header-buttons">
+            <!-- 相机按钮 -->
+            <div class="camera-button" onclick="captureImage()">
+                <img src="../../../../img/camera.jpg" alt="相机" class="camera-icon">
+            </div>
+            <!-- 刷新按钮 -->
+            <div class="refresh-button" onclick="startStreaming()">
+                <img src="../../../../img/refresh.jpg" alt="刷新" class="refresh-icon">
+            </div>
+        </div>
+    </header>
+    
+    <!-- 身体区域 -->
+    <div class="body-container">
+        <!-- 左半部分 - 控制区域 -->
+        <div class="left-panel">
+            <!-- 颜色勾选框 -->
+            <div class="control-section">
+                <h3 class="section-title">选择颜色</h3>
+                <div class="checkbox-group">
+                    <label class="checkbox-item">
+                        <input type="checkbox" id="checkRed">
+                        <span class="checkbox-custom"></span>
+                        <span class="checkbox-text">红色</span>
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" id="checkBlue">
+                        <span class="checkbox-custom"></span>
+                        <span class="checkbox-text">蓝色</span>
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" id="checkGreen">
+                        <span class="checkbox-custom"></span>
+                        <span class="checkbox-text">绿色</span>
+                    </label>
+                </div>
+            </div>
+            
+            <!-- 发送按钮 -->
+            <div class="control-section">
+                <button id="sendButton" class="send-btn" onclick="sendSelectedColors()">
+                    开始分拣
+                </button>
+                <button id="stopButton" class="stop-btn" onclick="sendStopCommand()">
+                    停止分拣
+                </button>
+            </div>
+        </div>
+        
+        <!-- 右半部分 - 视频流区域 -->
+        <div class="right-panel">
+            <div class="video-container">
+                <div class="video-player" id="videoPlayer">
+                    <img id="cameraStream" src="" alt="摄像头画面" />
+                    <div id="status" class="status">未连接</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+            <!-- 拍照成功弹窗 -->
+    <div class="success-modal" id="successModal">
+        <div class="modal-content">
+            <div class="modal-icon">✓</div>
+            <div class="modal-text">拍照成功！</div>
+            <div class="modal-buttons">
+                <button class="modal-btn primary" onclick="closeSuccessModal()">确定</button>
+            </div>
+        </div>
+    </div>
+    <!-- 引入 JS，注意路径 -->
+    <script src="../../../Connect_Net/js/Connect_Net.js"></script>
+    <script src="./js/page3.js"></script>
+</body>
+</html>
